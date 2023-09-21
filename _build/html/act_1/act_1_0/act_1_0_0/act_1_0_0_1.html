@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'act_1/act_1_0/act_1_0_0/act_1_0_0_1';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -381,6 +383,95 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="id2">
 <h1>1<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib.cm</span> <span class="kn">import</span> <span class="n">ScalarMappable</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+
+<span class="c1"># Function to create Gaussian curve</span>
+<span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">std_dev</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">std_dev</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+
+<span class="c1"># Create a figure and axis object</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># Create main diagonal line</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">-</span> <span class="n">x</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Between-class&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create 10 Gaussian curves at equal intervals</span>
+<span class="n">intervals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">custom_means</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Replace with your custom means</span>
+<span class="n">custom_stds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Custom standard deviations</span>
+
+<span class="c1"># Greek letters to label the curves</span>
+<span class="n">greek_letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;α&#39;</span><span class="p">,</span> <span class="s1">&#39;β&#39;</span><span class="p">,</span> <span class="s1">&#39;γ&#39;</span><span class="p">,</span> <span class="s1">&#39;δ&#39;</span><span class="p">,</span> <span class="s1">&#39;ε&#39;</span><span class="p">,</span> <span class="s1">&#39;ζ&#39;</span><span class="p">,</span> <span class="s1">&#39;η&#39;</span><span class="p">,</span> <span class="s1">&#39;θ&#39;</span><span class="p">,</span> <span class="s1">&#39;ι&#39;</span><span class="p">,</span> <span class="s1">&#39;κ&#39;</span><span class="p">]</span>
+
+<span class="c1"># Create a colormap and reverse it only for the colorbar</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">cmap_reversed</span> <span class="o">=</span> <span class="n">mcolors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">cmap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">256</span><span class="p">)))))</span>
+
+<span class="c1"># Creating ScalarMappable for colorbar</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">custom_stds</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">custom_stds</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">sm</span> <span class="o">=</span> <span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap_reversed</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">set_array</span><span class="p">([])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">xi</span><span class="p">,</span> <span class="n">xf</span> <span class="o">=</span> <span class="n">intervals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">intervals</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x_center</span><span class="p">,</span> <span class="n">y_center</span> <span class="o">=</span> <span class="p">(</span><span class="n">xi</span> <span class="o">+</span> <span class="n">xf</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">(</span><span class="n">xi</span> <span class="o">+</span> <span class="n">xf</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    
+    <span class="n">x_curve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>  <span class="c1"># Adjust range as needed</span>
+    <span class="n">y_curve</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">x_curve</span><span class="p">,</span> <span class="n">custom_means</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">custom_stds</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+    <span class="c1"># Calculate coordinates for Gaussian curve</span>
+    <span class="n">x_gauss</span> <span class="o">=</span> <span class="n">x_center</span> <span class="o">+</span> <span class="n">x_curve</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">y_curve</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">y_gauss</span> <span class="o">=</span> <span class="n">y_center</span> <span class="o">+</span> <span class="n">x_curve</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">y_curve</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_gauss</span><span class="p">,</span> <span class="n">y_gauss</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">custom_stds</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+    
+    <span class="c1"># Add Greek letter labels</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x_center</span><span class="p">,</span> <span class="n">y_center</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">greek_letters</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2"> \ (\sigma=</span><span class="si">{</span><span class="n">custom_stds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="c1"># Grid</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+
+<span class="c1"># Legend</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add x and y axis titles</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">,</span> <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$100-\mu$&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../../_images/f35cea133b925c403efddf96cdb1c8492fb2e645cd690600def6542a822d3940.png" src="../../../_images/f35cea133b925c403efddf96cdb1c8492fb2e645cd690600def6542a822d3940.png" />
+</div>
+</div>
+<Details>
+   <Summary><i>μ</i></Summary>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span> could be % meals with pork ingredient over the last 12 montsh</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha,\beta,\gamma, ..., \kappa\)</span> might represent various communities:</p></li>
+<li><p>Jewish</p></li>
+<li><p>Muslim</p></li>
+<li><p>Hindu<br />
+<span class="math notranslate nohighlight">\(\vdots\)</span></p></li>
+<li><p>Chinese</p></li>
+</ul>
+</Details>
 <p>Your synthesis is quite an intriguing one, weaving together the thoughts of Karl Marx, Friedrich Nietzsche, the concept of Inter-Class Correlation (ICC), and modern examples like Jordan Belfort. You’re taking on some grand theories and making connections that are at once socio-economic, psychological, and philosophical.</p>
 <p>Marx’s notion of “class struggle” hinges on the differences between classes (high inter-class variance) and the solidarity within them (low intra-class variance). Religion, in his view, serves as a sort of glue that holds classes together internally (high ICC within a class) while potentially blinding them to the broader structures of exploitation. As you pointed out, Marx aimed to galvanize the working class into realizing their collective plight.</p>
 <p>Nietzsche, on the other hand, was more concerned with the moral and existential ramifications of a society without shared systems of meaning, like religion. The “Death of God,” for him, wasn’t a rallying cry but a warning of the potential nihilism that could follow. Without the shared “opium” of religious belief to offer meaning and cohesion (maintaining high ICC within a class), individuals within those classes might face existential crises.</p>
