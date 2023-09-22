@@ -386,7 +386,12 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="id2">
 <h1>4<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h1>
-<p><img alt="" src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs43587-020-00017-z/MediaObjects/43587_2020_17_Fig1_HTML.png?as=webp" /></p>
+<br>
+<br>
+<div class="math notranslate nohighlight">
+\[
+\Huge\frac{\partial\frac{ADP}{ATP}}{\partial t}
+\]</div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -443,9 +448,9 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">tick_labels</span><span class="p">)</span>
 
 <span class="c1"># Add text annotations to label the areas without shaded background</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;Cell/Tissue</span><span class="se">\n</span><span class="s1"> (Apoptosis)</span><span class="se">\n</span><span class="s1"> Stress&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="s1">&#39;Organ/System</span><span class="se">\n</span><span class="s1"> (Homeostasis)</span><span class="se">\n</span><span class="s1"> Flow&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Person/Environment</span><span class="se">\n</span><span class="s1"> (Allostasis)</span><span class="se">\n</span><span class="s1"> Chill&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">6.6</span><span class="p">,</span> <span class="s1">&#39;Cell/Tissue</span><span class="se">\n</span><span class="s1"> (Thermogenesis)</span><span class="se">\n</span><span class="s1"> Stress - Immunoendocrine&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="s1">&#39;Organ/System</span><span class="se">\n</span><span class="s1"> (Homeostasis)</span><span class="se">\n</span><span class="s1"> Flow - Skeletomuscular&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Person/Environment</span><span class="se">\n</span><span class="s1"> (Allostasis)</span><span class="se">\n</span><span class="s1"> Chill - Cardiovascular&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 
 <span class="c1"># Display the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -454,9 +459,21 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../../../_images/f565c38e7ea4bca3e9939ce463ebe435afc6bff6d479bbcdc1d77351b8ea93f4.png" src="../../../_images/f565c38e7ea4bca3e9939ce463ebe435afc6bff6d479bbcdc1d77351b8ea93f4.png" />
+<img alt="../../../_images/4489baa5c7d68ad9849524ddf71b56f0927dd3ebb3a6e7863e6054e798ed4ebc.png" src="../../../_images/4489baa5c7d68ad9849524ddf71b56f0927dd3ebb3a6e7863e6054e798ed4ebc.png" />
 </div>
 </div>
+<br>
+<br>
+<div class="math notranslate nohighlight">
+\[\Huge AMPK \rightarrow PGC-1\alpha\]</div>
+<p><a class="reference external" href="https://www.pnas.org/doi/epdf/10.1073/pnas.0705070104">.</a><a class="reference external" href="https://journals.physiology.org/doi/full/10.1152/advan.00052.2006?rfr_dat=cr_pub++0pubmed&amp;url_ver=Z39.88-2003&amp;rfr_id=ori%3Arid%3Acrossref.org">.</a></p>
+<p><img alt="" src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs43587-020-00017-z/MediaObjects/43587_2020_17_Fig1_HTML.png?as=webp" /></p>
+<br>
+<br>
+<div class="math notranslate nohighlight">
+\[
+\Huge mtDNA,  GLUT-4, \beta-oxidation
+\]</div>
 <p><span class="math notranslate nohighlight">\(
 \Large
 \left\{
@@ -472,6 +489,12 @@ document.write(`
 \end{array} 
 \right. 
 \)</span></p>
+<br>
+<br>
+<br>
+<br>
+<div class="math notranslate nohighlight">
+\[\Huge Phenotypes\]</div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -577,6 +600,14 @@ document.write(`
 <img alt="../../../_images/fa81d051096de917d8d4f4c62fd851c6589c4ae922b603224f031cc78125cf3d.png" src="../../../_images/fa81d051096de917d8d4f4c62fd851c6589c4ae922b603224f031cc78125cf3d.png" />
 </div>
 </div>
+<br>
+<br>
+<br>
+<div class="math notranslate nohighlight">
+\[
+\Huge \frac{\tau^2}{\tau^2+\sigma^2}
+\]</div>
+<br>
 <p><span style="font-size:35px;color:red;">U   n   e   x   p   l   a    i   n   e   d       V   a   r   i   a   n   c   e</span><br>
 <br>
 <span class="math notranslate nohighlight">\(
@@ -625,7 +656,10 @@ document.write(`
 <p><span class="math notranslate nohighlight">\(
 \Huge Y_{ij} = \beta_{i0}+X_{ij}\beta_{ij} + \epsilon_{ij}, \quad \epsilon_{ij} \sim \mathcal{N}(\mu, \sigma^2)
 \)</span></p>
-<Details>
+<br>
+<br>
+<br>
+<br><Details>
    <Summary></Summary>
 <p><b>~/.ssh/id_figurativenarrative</b></p>
 <ol class="arabic simple">
@@ -671,6 +705,34 @@ The equation <span class="math notranslate nohighlight">\(( Y_{ij}=X_{ij}\beta_{
 <p>Announcing Google Cloud Next ’24<br>
 April 9-11, 2024<br>
 <span style="color:grey;">Mandalay Bay, Convention Center, Las Vegas, NV</span><br></p>
+</Details>
+<Details>
+   <Summary></Summary>
+<p>Criminals in this town used to believe in things:</p>
+<ul class="simple">
+<li><p>Honor</p></li>
+<li><p>Respect</p></li>
+<li><p>Look at you</p></li>
+</ul>
+<p>What do you believe in?</p>
+<p><em>I believe that what doesn’t kill you simply makes you… stranger! - Joker</em></p>
+</Details>
+<Details>
+   <Summary></Summary>
+<p>Principal Component Analysis (PCA) and Principal Stratification are two different statistical methods used for distinct purposes, but they share some similarities in that both are used to simplify complex data structures. Let’s briefly look at each:</p>
+<p>Principal Component Analysis (PCA)<br></p>
+<p>PCA is a dimensionality reduction technique used primarily to emphasize variation and capture strong patterns in a dataset. It transforms the original variables into a new set of variables (the principal components) that are orthogonal, and which reflect the maximum variance in the data. The first principal component reflects the most variance, the second (which is orthogonal to the first) reflects the second most, and so on.</p>
+<p>Principal Stratification<br></p>
+<p>Principal Stratification is a causal inference framework mainly used in the context of randomized controlled trials where post-randomization variables might affect the treatment effect. It aims to assess causal treatment effects within strata (or “principal strata”) that are defined by the joint potential outcomes under each treatment level. By doing this, the method accounts for post-treatment variables that may mediate the effect of treatment on outcomes, thereby providing a more accurate picture of causal effects.</p>
+<p>Relationship<br></p>
+<p>While PCA seeks to simplify the feature space by capturing its underlying structure, Principal Stratification simplifies the complexity associated with causal inference by accounting for post-randomization variables. Here are some potential intersections between the two:</p>
+<ol class="arabic simple">
+<li><p><strong>Data Preprocessing</strong>: PCA can sometimes be used as a preprocessing step to reduce dimensionality before applying causal inference models, although care must be taken to ensure the reduced feature set still contains the necessary variables for accurate causal analysis.</p></li>
+<li><p><strong>Exploring Latent Variables</strong>: Both methods deal with latent (unobserved) variables but in different ways. PCA captures latent features that explain variance, while Principal Stratification identifies latent subgroups for which causal effects are homogeneous.</p></li>
+<li><p><strong>Interpreting Variance</strong>: In a complex causal model with many observed variables, you could use PCA to identify the main axes of variance beforehand. Principal Stratification could then be used to understand how different strata differ in treatment effect, possibly using these axes as stratifiers.</p></li>
+<li><p><strong>Bias and Error</strong>: Both techniques aim to give better estimates—PCA by reducing dimensionality and avoiding multicollinearity, and Principal Stratification by considering post-randomization biases. A deep understanding of the biases and errors involved in each could provide comprehensive insights when both are used in tandem.</p></li>
+</ol>
+<p>In your context, where you’re focused on understanding the data generating process to explain variance and control bias, incorporating both methods might offer a multi-layered approach. Principal Stratification could handle complexities in causal inference, especially those post-randomization, while PCA could help in navigating the “yellow wood” where multiple dimensions of knowledge exist, making the data generating process more tractable. The relationship between tokens and variance in your model might also be enriched by these techniques.</p>
 </Details></section>
 
     <script type="text/x-thebe-config">
