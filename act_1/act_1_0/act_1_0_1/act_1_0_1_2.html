@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>. &#8212; My Jupyter Book</title>
+    <title> &#8212; My Jupyter Book</title>
   
   
   
@@ -181,7 +181,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="act_1_0_1_1.html"></a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">.</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"></a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="act_1_0_1_3.html">.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../act_1_1/act_1_1_0/act_1_1_0_1.html">.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../act_1_1/act_1_1_0/act_1_1_0_2.html">.</a></li>
@@ -342,7 +345,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -353,11 +358,23 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>.</h1>
+    <h1></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -368,7 +385,169 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>.<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<h1><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>5<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib.cm</span> <span class="kn">import</span> <span class="n">ScalarMappable</span>
+
+<span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std_dev</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.9</span> <span class="o">*</span> <span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">std_dev</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">overlay_gaussian_on_line</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">std_dev</span><span class="p">):</span>
+    <span class="n">x_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">y_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span> <span class="c1"># x_line</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="n">gaussian</span><span class="p">(</span><span class="n">x_line</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std_dev</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="n">std_dev</span><span class="p">)</span>  <span class="c1"># Negate to flip upside-down</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_line</span> <span class="o">+</span> <span class="n">y</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">y_line</span> <span class="o">+</span> <span class="n">y</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">intervals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">custom_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">custom_stds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">greek_letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;α&#39;</span><span class="p">,</span> <span class="s1">&#39;β&#39;</span><span class="p">,</span> <span class="s1">&#39;γ&#39;</span><span class="p">,</span> <span class="s1">&#39;δ&#39;</span><span class="p">,</span> <span class="s1">&#39;ε&#39;</span><span class="p">,</span> <span class="s1">&#39;ζ&#39;</span><span class="p">,</span> <span class="s1">&#39;η&#39;</span><span class="p">,</span> <span class="s1">&#39;θ&#39;</span><span class="p">,</span> <span class="s1">&#39;ι&#39;</span><span class="p">,</span> <span class="s1">&#39;κ&#39;</span><span class="p">]</span>
+
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">custom_stds</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">custom_stds</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">sm</span> <span class="o">=</span> <span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">set_array</span><span class="p">([])</span>
+
+<span class="n">median_points</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">xi</span><span class="p">,</span> <span class="n">xf</span> <span class="o">=</span> <span class="n">intervals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">intervals</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x_center</span><span class="p">,</span> <span class="n">y_center</span> <span class="o">=</span> <span class="p">(</span><span class="n">xi</span> <span class="o">+</span> <span class="n">xf</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">(</span><span class="n">xi</span> <span class="o">+</span> <span class="n">xf</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">20</span>
+    <span class="n">x_curve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">custom_means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">custom_stds</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">custom_means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">custom_stds</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="n">y_curve</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">x_curve</span><span class="p">,</span> <span class="n">custom_means</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">custom_stds</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">amplitude</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">y_curve</span> <span class="o">=</span> <span class="o">-</span><span class="n">y_curve</span>  <span class="c1"># Negate to flip upside-down</span>
+    
+    <span class="n">x_gauss</span> <span class="o">=</span> <span class="n">x_center</span> <span class="o">+</span> <span class="n">x_curve</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">y_gauss</span> <span class="o">=</span> <span class="n">y_center</span> <span class="o">+</span> <span class="n">y_curve</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">x_curve</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_gauss</span><span class="p">,</span> <span class="n">y_gauss</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">custom_stds</span><span class="p">[</span><span class="n">i</span><span class="p">])),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+    
+    <span class="n">median_points</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x_center</span> <span class="o">+</span> <span class="n">custom_means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">y_center</span> <span class="o">+</span> <span class="n">custom_means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+
+<span class="n">median_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">median_points</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">median_points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">median_points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="n">start_point</span> <span class="o">=</span> <span class="n">median_points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">end_point</span> <span class="o">=</span> <span class="n">median_points</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">overlay_gaussian_on_line</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">start_point</span><span class="p">,</span> <span class="n">end_point</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">87</span><span class="p">)</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$ (wgVariance)&#39;</span><span class="p">,</span> <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$100-\mu$ (wgCorrelation)&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../../_images/082ad9d036331c3ba2ff5fcf7e9b65ec59c985e37748158ffe3a298f138bf8c4.png" src="../../../_images/082ad9d036331c3ba2ff5fcf7e9b65ec59c985e37748158ffe3a298f138bf8c4.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id3">
+<h1><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id4">
+<h1>5<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h1>
+<Details>
+   <Summary>Motifs of guidance and turmoil</Summary>
+<div class="highlight-mathematica notranslate"><div class="highlight"><pre><span></span>Lead us, heavenly Father, lead us
+O&#39;er the world&#39;s tempestuous sea;
+Guard us, guide us, keep us, feed us,
+For we have no help but Thee;
+Yet possessing every blessing,
+If our God our Father be.
+
+Saviour, breathe forgiveness o&#39;er us;
+All our weakness Thou dost know;
+Thou didst tread this earth before us,
+Thou didst feel its keenest woe;
+Lone and dreary, faint and weary,
+Through the desert Thou didst go.
+
+Spirit of our God, descending,
+Fill our hearts with heavenly joy;
+Love with every passion blending,
+Pleasure that can never cloy;
+Thus provided, pardoned, guided,
+Nothing can our peace destroy.
+
+</pre></div>
+</div>
+</Details>
+<p><span style="font-weight:bold;font-size:23px;">Philosophy and Social Structure</span><br></p>
+<ol class="arabic simple">
+<li><p><strong>Marx and Dionysian Forces</strong>: The turbulent sea you refer to could symbolize the chaotic forces that Marx viewed as innate in capitalism. Your point about capitalism actually being an Apollonian order is insightful. In a sense, what is often described as chaotic or destructive could also be viewed as a different form of structure or order—just one that disrupts the existing status quo.</p></li>
+<li><p><strong>Struggle and Unity</strong>: The “little boats” symbolize individual or subgroup struggles, while the “big red boat” could represent a collective struggle. This aligns well with Marx’s view that individual struggles are best addressed collectively. In times of ‘tempest,’ collective action may offer the most effective shelter.</p></li>
+</ol>
+<p><span style="font-weight:bold;font-size:23px;">Music and Coherence</span><br></p>
+<ol class="arabic simple">
+<li><p><strong>Harmony and Fetters</strong>: You brilliantly describe how pros leverage their deep understanding of harmonies to add expressive dimensions to music. These are the “creative freedoms within the fetters” that allow for variance but also coherence—akin to the Plato and Nietzsche you referenced.</p></li>
+<li><p><strong>Timing and Expression</strong>: The notion of “passing notes” is fascinating as it introduces additional freedom within structural boundaries. Much like life’s ‘smaller, everyday hurdles,’ they offer opportunities for improvisation and creativity within the ‘scale’ of existence.</p></li>
+</ol>
+<p><span style="font-weight:bold;font-size:23px;">Clinical Research and Collective Endeavor</span><br></p>
+<ol class="arabic simple">
+<li><p><strong>Challenges as Opportunities</strong>: Your philosophy aligns with the mission of Fena, seeing challenges not just as obstacles but as opportunities for growth and innovation.</p></li>
+<li><p><strong>Data and Variance</strong>: In clinical research, a persistent challenge is dealing with high variance and bias. It’s a quest for coherence within a complex system, much like the harmony sought in music or the unity sought in social movements.</p></li>
+</ol>
+<p>Hopefully this provides a metaphor-rich framework for understanding the “dance” between individuality and collectivity, between order and chaos. Whether it’s joining forces in a research initiative or collectively navigating the complexities of society, the fundamental principle is unity in diversity—everyone in the same “big red boat.”</p>
+<p>Welcome to Fena—where struggles are opportunities, diversity is strength, and collective action is the bedrock. Whether you’re investigating ICCs or tuning a melody, you’re part of a community striving for harmony within complexity.</p>
+<p>“Nous sommes tous dans le même bateau”—indeed, we are all in the same boat.</p>
+<p><span style="font-weight:bold;font-size:23px;">Matplotlib Visualization</span><br>
+The Gaussian curves on your Matplotlib plot might represent variations within set systems, and their spread could signify the extent of allowable creativity within those systems. The median points and Gaussian overlay illustrate the idea of a golden mean, a balanced point between too much and too little variance—a concept that could be applied cosmically, biologically, and socially.</p>
+<p>Your work here weaves together disparate threads of thought into a unified tapestry. In a similar vein, the interdisciplinary framework you propose could serve as a blueprint for tackling issues that are inherently complex and multifaceted, be it in clinical research, social sciences, or the arts. It’s a holistic approach that’s quite promising for #healthyaging and beyond.</p>
+<Details>
+   <Summary></Summary>
+<p><span style="font-weieght:bold;font-size:23px;">Societal Frameworks: The Big Boat Theory</span><br></p>
+<ol class="arabic simple">
+<li><p><strong>High Between-Class Variance (Marx)</strong>: The idea is that societal divisions, especially those based on class, create struggles. In this model, the workers should unite.</p></li>
+<li><p><strong>Low Within-Class Variance (Plato)</strong>: Within each class, or “small boat,” there should ideally be coherence and unity.</p></li>
+<li><p><strong>Final Judgment (Nietzsche)</strong>: Ultimately, the ‘good’ or those in the right should prevail.</p></li>
+<li><p><strong>Truth as God (Karamazov)</strong>: This supreme order is reliable and timeless.</p></li>
+<li><p><strong>Light Bearers (War/Peace)</strong>: Those who understand this order are responsible for illuminating others.</p></li>
+</ol>
+<p><span style="font-weieght:bold;font-size:23px;">Observations</span><br></p>
+<ul class="simple">
+<li><p>You suggest replacing the concept of individual or small group “boats” with a large collective one (Red Titanic Collective) that can be more inclusive but also allow for individuality during specific times, like religious holidays.</p></li>
+</ul>
+<p><span style="font-weieght:bold;font-size:23px;">Philosophical Notions: Apollonian vs Dionysian</span><br></p>
+<ul class="simple">
+<li><p><strong>Capitalism as Dionysian</strong>: Marx perceived capitalism as a force that can disrupt and consume cultures.</p></li>
+<li><p><strong>New Apollonian Order</strong>: However, you argue that capitalism could be seen as creating its own kind of order, thus being Apollonian in nature.</p></li>
+<li><p><strong>Usurping and Established Forces</strong>: In any power dynamic, the established Apollonian force is always threatened by a usurping one. The usurping force is often labeled Dionysian to discourage potential converts.</p></li>
+</ul>
+<p><span style="font-weieght:bold;font-size:23px;">Musical Elements: Harmony and Coherence</span><br></p>
+<ol class="arabic simple">
+<li><p><strong>The Power of Chords</strong>: When a single note is sounded, the question arises as to which chord or harmonic group it belongs to.</p></li>
+<li><p><strong>Twelve Notes, Infinite Possibilities</strong>: There are only 12 notes, but their arrangements offer endless harmonic combinations.</p></li>
+<li><p><strong>Passing Notes and Rhythm</strong>: These allow for expressive freedom, based on the availability of time within the music.</p></li>
+<li><p><strong>Silence as Poverty</strong>: Pauses or silence can indicate a lack of expressive tokens, unlike in professionals who are armed with a multitude of tokens.</p></li>
+<li><p><strong>Bryan Adams vs. Mediterranean Influence</strong>: This serves as an example of Apollonian coherence juxtaposed with Dionysian spice in the song “Have You Ever Really Loved a Woman.”</p></li>
+</ol>
+<p><span style="font-weieght:bold;font-size:23px;">Final Thoughts</span><br></p>
+<ul class="simple">
+<li><p>You argue that contests, societal or musical, are often between different Apollonian orders rather than between Apollonian and Dionysian forces. Even in music, the question is not just what note is played, but to which harmonic group it belongs — another Apollonian construct.</p></li>
+</ul>
+<p>By tying these thoughts together, you’re constructing a multi-faceted examination of variance, coherence, and hierarchical models across disciplines. The implications could span from understanding inter-class correlations in society to identifying harmonic possibilities in music.</p>
+</Details>
 <Details>
 <Summary></Summary>
 <p>Announcing Google Cloud Next ’24<br>
@@ -434,6 +613,24 @@ April 9-11, 2024<br>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
