@@ -414,6 +414,119 @@ document.write(`
 \end{array} 
 \right. 
 \)</span></p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib.cm</span> <span class="kn">import</span> <span class="n">ScalarMappable</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">LinearSegmentedColormap</span><span class="p">,</span> <span class="n">PowerNorm</span>
+
+<span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std_dev</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.9</span> <span class="o">*</span> <span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">std_dev</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">overlay_gaussian_on_line</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">std_dev</span><span class="p">):</span>
+    <span class="n">x_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">y_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_line</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">x_line</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std_dev</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="n">std_dev</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_line</span> <span class="o">+</span> <span class="n">y</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">y_line</span> <span class="o">+</span> <span class="n">y</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">intervals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">custom_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">custom_stds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Change to &#39;viridis&#39; colormap to get gradations like the older plot</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">custom_stds</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">custom_stds</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">sm</span> <span class="o">=</span> <span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">set_array</span><span class="p">([])</span>
+
+<span class="n">median_points</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">xi</span><span class="p">,</span> <span class="n">xf</span> <span class="o">=</span> <span class="n">intervals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">intervals</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x_center</span><span class="p">,</span> <span class="n">y_center</span> <span class="o">=</span> <span class="p">(</span><span class="n">xi</span> <span class="o">+</span> <span class="n">xf</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">(</span><span class="n">xi</span> <span class="o">+</span> <span class="n">xf</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">20</span>
+    <span class="n">x_curve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">custom_means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">custom_stds</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">custom_means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">custom_stds</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="n">y_curve</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">x_curve</span><span class="p">,</span> <span class="n">custom_means</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">custom_stds</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">amplitude</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    
+    <span class="n">x_gauss</span> <span class="o">=</span> <span class="n">x_center</span> <span class="o">+</span> <span class="n">x_curve</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">y_gauss</span> <span class="o">=</span> <span class="n">y_center</span> <span class="o">+</span> <span class="n">y_curve</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">x_curve</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_gauss</span><span class="p">,</span> <span class="n">y_gauss</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">custom_stds</span><span class="p">[</span><span class="n">i</span><span class="p">])),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+    <span class="n">median_points</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x_center</span> <span class="o">+</span> <span class="n">custom_means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">y_center</span> <span class="o">+</span> <span class="n">custom_means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+
+<span class="n">median_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">median_points</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">median_points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">median_points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="n">start_point</span> <span class="o">=</span> <span class="n">median_points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">end_point</span> <span class="o">=</span> <span class="n">median_points</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">overlay_gaussian_on_line</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">start_point</span><span class="p">,</span> <span class="n">end_point</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">87</span><span class="p">)</span>
+
+<span class="c1"># Create a new ScalarMappable with a reversed colormap just for the colorbar</span>
+<span class="n">cmap_reversed</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reversed</span><span class="p">()</span>
+<span class="n">sm_reversed</span> <span class="o">=</span> <span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap_reversed</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">sm_reversed</span><span class="o">.</span><span class="n">set_array</span><span class="p">([])</span>
+
+<span class="c1"># Existing code for creating the colorbar</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sm_reversed</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="c1"># Specify the tick positions you want to set</span>
+<span class="n">custom_tick_positions</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>  <span class="c1"># example positions, you can change these</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">custom_tick_positions</span><span class="p">)</span>
+
+<span class="c1"># Specify custom labels for those tick positions</span>
+<span class="n">custom_tick_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">]</span>  <span class="c1"># example labels, you can change these</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">(</span><span class="n">custom_tick_labels</span><span class="p">)</span>
+
+<span class="c1"># Label for the colorbar</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;♭&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+
+
+<span class="c1"># Label for the colorbar</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;♭&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+
+
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;♭&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+
+<span class="c1"># Add X and Y axis labels with custom font styles</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Mode&#39;</span><span class="p">,</span> <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Mood&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># Add musical modes as X-axis tick labels</span>
+<span class="n">musical_modes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ionian&quot;</span><span class="p">,</span> <span class="s2">&quot;Dorian&quot;</span><span class="p">,</span> <span class="s2">&quot;Phrygian&quot;</span><span class="p">,</span> <span class="s2">&quot;Lydian&quot;</span><span class="p">,</span> <span class="s2">&quot;Mixolydian&quot;</span><span class="p">,</span> <span class="s2">&quot;Aeolian&quot;</span><span class="p">,</span> <span class="s2">&quot;Locrian&quot;</span><span class="p">]</span>
+<span class="n">mode_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">musical_modes</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">mode_positions</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">musical_modes</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="c1"># Add moods as Y-axis tick labels</span>
+<span class="n">moods</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;flow&quot;</span><span class="p">,</span> <span class="s2">&quot;control&quot;</span><span class="p">,</span> <span class="s2">&quot;relaxation&quot;</span><span class="p">,</span> <span class="s2">&quot;bored&quot;</span><span class="p">,</span> <span class="s2">&quot;apathy&quot;</span><span class="p">,</span> <span class="s2">&quot;worry&quot;</span><span class="p">,</span> <span class="s2">&quot;anxiety&quot;</span><span class="p">,</span> <span class="s2">&quot;arousal&quot;</span><span class="p">]</span>
+<span class="n">mood_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">moods</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">mood_positions</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">moods</span><span class="p">)</span>
+
+<span class="c1"># ... (rest of the code unchanged)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../../_images/d16c073e1e0a4435f447ab20691a8f9243a49b9ddeecf8c9864eb45294cc7967.png" src="../../../_images/d16c073e1e0a4435f447ab20691a8f9243a49b9ddeecf8c9864eb45294cc7967.png" />
+</div>
+</div>
 <p>To clarify. Women have wanted all this stuff from the beginning of time: to be accepted as they are and “spoiled” or treated like a Queen.</p>
 <p>So it’s just the level of assertion of their needs that has increased with time.</p>
 <p>Bwana Odinga’s notes are just a man’s diary or journal, a depiction of the evolution of his understanding.</p>
@@ -428,6 +541,67 @@ document.write(`
 <hr class="docutils" />
 <p><span style="text-transform:uppercase;">Supposing</span> that Truth is a woman—what then? Is there not ground for suspecting that all philosophers, in so far as they have been dogmatists, have failed to understand women—that the terrible seriousness and clumsy importunity with which they have usually paid their addresses to Truth, have been unskilled and unseemly methods for winning a woman? Certainly she has never allowed herself to be won; and at present every kind of dogma stands with sad and discouraged mien—IF, indeed, it stands at all! For there are scoffers who maintain that it has fallen, that all dogma lies on the ground—nay more, that it is at its last gasp. But to speak seriously, there are good grounds for hoping that all dogmatizing in philosophy, whatever solemn, whatever conclusive and decided airs it has assumed, may have been only a noble puerilism and tyronism; and probably the time is at hand when it will be once and again understood WHAT has actually sufficed for the basis of such imposing and absolute philosophical edifices as the dogmatists have hitherto reared: perhaps some popular superstition of immemorial time (such as the soul-superstition, which, in the form of subject- and ego-superstition, has not yet ceased doing mischief): perhaps some play upon words, a deception on the part of grammar, or an audacious generalization of very restricted, very personal, very human—all-too-human facts. The philosophy of the dogmatists, it is to be hoped, was only a promise for thousands of years afterwards, as was astrology in still earlier times, in the service of which probably more labour, gold, acuteness, and patience have been spent than on any actual science hitherto: we owe to it, and to its “super-terrestrial” pretensions in Asia and Egypt, the grand style of architecture. It seems that in order to inscribe themselves upon the heart of humanity with everlasting claims, all great things have first to wander about the earth as enormous and awe-inspiring caricatures: dogmatic philosophy has been a caricature of this kind—for instance, the Vedanta doctrine in Asia, and Platonism in Europe. Let us not be ungrateful to it, although it must certainly be confessed that the worst, the most tiresome, and the most dangerous of errors hitherto has been a dogmatist error—namely, Plato’s invention of Pure Spirit and the Good in Itself. But now when it has been surmounted, when Europe, rid of this nightmare, can again draw breath freely and at least enjoy a healthier—sleep, we, WHOSE DUTY IS WAKEFULNESS ITSELF, are the heirs of all the strength which the struggle against this error has fostered. It amounted to the very inversion of truth, and the denial of the PERSPECTIVE—the fundamental condition—of life, to speak of Spirit and the Good as Plato spoke of them; indeed one might ask, as a physician: “How did such a malady attack that finest product of antiquity, Plato? Had the wicked Socrates really corrupted him? Was Socrates after all a corrupter of youths, and deserved his hemlock?” But the struggle against Plato, or—to speak plainer, and for the “people”—the struggle against the ecclesiastical oppression of millenniums of Christianity (FOR CHRISTIANITY IS PLATONISM FOR THE “PEOPLE”), produced in Europe a magnificent tension of soul, such as had not existed anywhere previously; with such a tensely strained bow one can now aim at the furthest goals. As a matter of fact, the European feels this tension as a state of distress, and twice attempts have been made in grand style to unbend the bow: once by means of Jesuitism, and the second time by means of democratic enlightenment—which, with the aid of liberty of the press and newspaper-reading, might, in fact, bring it about that the spirit would not so easily find itself in “distress”! (The Germans invented gunpowder—all credit to them! but they again made things square—they invented printing.) But we, who are neither Jesuits, nor democrats, nor even sufficiently Germans, we GOOD EUROPEANS, and free, VERY free spirits—we have it still, all the distress of spirit and all the tension of its bow! And perhaps also the arrow, the duty, and, who knows? THE GOAL TO AIM AT….
 Sils Maria Upper Engadine, JUNE, 1885.</p>
+</Details>
+<Details>
+   <Summary></Summary>
+<p><span style="font-size:23px;font-weight:bold;">Key Themes</span>:</p>
+<ol class="arabic simple">
+<li><p><strong>The Nature of Truth</strong>: Nietzsche suggests that the concept of truth is not as objective as traditional philosophers make it out to be. He challenges dogmatism, asserting that the very constructs of “Pure Spirit” and the “Good in Itself” are problematic.</p></li>
+<li><p><strong>Power and Interpretation</strong>: The idea that truth is often dictated by those in power. Women, gaining power in various spheres like the workforce, are now more influential in shaping their narrative.</p></li>
+<li><p><strong>The Ontology-Epistemology Dichotomy</strong>: In the case of understanding women, or any subject, the entity itself might be constant, but our understanding (epistemology) is ever-changing. In essence, our interaction shapes our understanding, making epistemology the real variable.</p></li>
+<li><p><strong>Cultural Evolution</strong>: An evolutionary shift is seen in terms of power dynamics and the understanding of subjects like women, truth, and morality. This change can be noted in various elements, such as Bwana Odinga’s evolving perspectives recorded in his diary.</p></li>
+</ol>
+<p><span style="font-size:23px;font-weight:bold;">Hierarchical Understanding of Knowledge</span><br></p>
+<ul class="simple">
+<li><p><strong>Truth</strong>: The top-most element, subject to change and interpretation.</p>
+<ul>
+<li><p><strong>Knowledge</strong>: Various types of knowledge like rigor and error feed into the truth.</p>
+<ul>
+<li><p><strong>Error</strong>: Categorized into variance and bias.</p>
+<ul>
+<li><p><strong>Variance &amp; Bias</strong>: Need to be explained and controlled to approach truth.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Force</strong>: Which ultimately brings us back to the data-generating process</p>
+<ul>
+<li><p>*<strong>Power</strong>: Silos of power are distributed geographically and socially</p></li>
+<li><p><strong>Hierarchy</strong>*: Everything is to be understood in the context of hierarchies of power</p>
+<ul>
+<li><p>Dionysian force, cosmic and biological in nature, is highest</p></li>
+<li><p>Apollonian silos, moreorless social, are defined and reinforced by those in power</p></li>
+<li><p>Birth of trajedy, a notion of remaining superficial out of profundity, like the ancient Greeks</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><span style="font-size:23px;font-weight:bold;">Intersections with Nietzsche</span><br></p>
+<ul class="simple">
+<li><p>Power dynamics play a role in what is considered rigorous or valid, paralleling Nietzsche’s perspectives on truth being influenced by power.</p></li>
+</ul>
+<p><span style="font-size:23px;font-weight:bold;">Current Events</span><br></p>
+<ul class="simple">
+<li><p>Google Cloud Next ’24 announced for April 9-11, 2024, at Mandalay Bay, Convention Center, Las Vegas, NV.</p></li>
+</ul>
+<p><span style="font-size:23px;font-weight:bold;">Quote for Reflection</span><br>
+“Supposing that Truth is a woman—what then? Is there not ground for suspecting that all philosophers, in so far as they have been dogmatists, have failed to understand women?” - Nietzsche in “Beyond Good and Evil.”</p>
+</Details>
+<Details>
+   <Summary></Summary>
+<h3>Summary:</h3>
+<p>The conversation delves into the complex interplay between truth, knowledge, and power, drawing from Nietzsche's philosophy as well as the evolving perspectives recorded in Bwana Odinga&rsquo;s diary.</p>
+<ol>
+  <li><b>Truth and Power</b>: Nietzsche argues that truth is not an objective constant but is shaped by power dynamics. This is illustrated by the rising influence of women, who are increasingly empowered to assert themselves in various spheres like the workforce and social media (DMs).</li>
+  <li><b>Ontology-Epistemology Dichotomy</b>: While the underlying subject (e.g., women) may remain constant, our understanding of them is fluid and changes with time and interaction. This makes epistemology—the study of knowledge—the real variable.</li>
+  <li><b>Error and Bias</b>: Within the realm of knowledge, 'error' is bifurcated into 'variance' and 'bias'. Both need to be explained and controlled to arrive at a more accurate understanding of truth.</li>
+  <li><b>Cultural Evolution</b>: Bwana Odinga&rsquo;s diary symbolizes the changing landscape of understanding subjects like women, truth, and morality over time.</li>
+  <li><b>Hierarchical Understanding</b>: Knowledge, errors, and their sub-categories are nested in a hierarchical structure. This hierarchical understanding can be cosmically, biologically, and socially contextualized.</li>
+  <li><b>Ending Notes</b>: The discussion concludes with the idea that our search for truth is constrained by our methods and perspectives, requiring a return to data-generating processes to clarify bias and variance. Thus, the quest for truth is continuous and complex, influenced by the play of power and interpretation in the society.</li>
+</ol>
 </Details>
 <Details>
 <Summary></Summary>
