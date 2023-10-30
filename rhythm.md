@@ -2,9 +2,9 @@
 
 
 1. $\text{Sensors/Homeostasis},E$:
-   - AMPK
-   - mtDNA
-   - Catabolic
+   - `AMPK -> mtDNA -> Catabolic`
+   - Glucose metabolism
+   - Cortisol release
      
 3. $\text{Catabolic/Allostasis},M$
    - Nicotinic receptors 
@@ -14,6 +14,6 @@
    - Cognitive, Memory, Arousal
      
 4. $\text{Anabolic/Sociostasis},C^2$
-   - Quality of sleep 
+   - `Slow-wave sleep (SWS) & rapid eye movement (REM) sleep -> GH -> protein synthesis`
    - [Adenosine](https://www.nobelprize.org/prizes/medicine/2017/press-release/) `accumulation`
    - Daily grind/social engagenent
