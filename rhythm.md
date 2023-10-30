@@ -24,7 +24,7 @@
 ```
     1.Molecule 
               \
-3.External ->  2.Accumulation -> 5. Sleep -> 6. Metabolism
+3.External ->  2.Accumulation -> 5. Wakefulness-> 6. Metabolism
               /
                4. Internal
 
